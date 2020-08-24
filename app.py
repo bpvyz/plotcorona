@@ -24,8 +24,9 @@ def index():
 @app.route('/plot', methods=['GET', 'POST'])
 def show_index():
     select = request.form.get('comp_select')
-    cor = Corona()
-    cor.plot(select)
+    corona = Corona()
+    corona.generate_plot(select)
+    corona.plt.savefig(f'static/graphs/graph{datetime.datetime.now().timestamp()}.png', dpi=300)
     full_filename = os.path.join(app.config['UPLOAD_FOLDER'], 'graph*.png')
     return render_template("plot.html", user_image=full_filename)
 

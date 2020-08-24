@@ -7,6 +7,9 @@ import glob
 
 class Corona:
 
+    def __init__(self):
+        self.plt = plt
+
     def _draw_a_graph(self, country, dates, confirmed, deaths, recovered, percentage1, percentage2, percentage3):
         print(f"Drawing a graph for {country}!")
         plt.grid()
@@ -38,9 +41,7 @@ class Corona:
         plt.annotate(percentage2, (0.1,950), textcoords='offset points', xytext=(dates[0], confirmed[0]), size='8')
         plt.annotate(percentage3, (0.1,1000), textcoords='offset points', xytext=(dates[0], confirmed[0]), size='8')
         plt.xticks(rotation=45, fontsize=6)
-        filename = f'graph{datetime.datetime.now().timestamp()}.png'
-        print(filename)
-        return(plt.savefig(f'static/graphs/{filename}', dpi=300))
+        return(plt)
 
     def _create_plot_data(self, country):
         print(f"Creating plot data for {country}!")
@@ -54,7 +55,7 @@ class Corona:
         country = input("Enter a country you wish to plot for: ")
         return self._create_plot_data(country)
 
-    def plot(self, country=None):
+    def generate_plot(self, country=None):
         if country is None:
             return self._request_user_input()
         else:
