@@ -1,9 +1,6 @@
 from utils import *
-import numpy as np
 import matplotlib.pyplot as plt
-import datetime
-import os
-import glob
+import random
 
 class Corona:
 
@@ -20,8 +17,7 @@ class Corona:
         plt.xlabel('Date')
         for x, y, z, p in zip(dates, confirmed, deaths, recovered):
             labely = y
-            plt.annotate(labely, (x, y), textcoords='offset points', xytext=(0, 30), ha='center', size='7',
-                         color='blue')
+            plt.annotate(labely, (x, y), textcoords='offset points', xytext=(0, 30), ha='center', size='7', color='blue')
             labelz = z
             plt.annotate(labelz, (x, z), textcoords='offset points', xytext=(0, 20), ha='center', size='7', color='red')
             labelp = p
@@ -37,9 +33,9 @@ class Corona:
         margin = m / plt.gcf().get_size_inches()[0]
         plt.gcf().subplots_adjust(left=margin, right=1. - margin)
         plt.gcf().set_size_inches(s, plt.gcf().get_size_inches()[1])
-        plt.annotate(percentage1, (0.1,900), textcoords='offset points', xytext=(dates[0], confirmed[0]), size='8')
-        plt.annotate(percentage2, (0.1,950), textcoords='offset points', xytext=(dates[0], confirmed[0]), size='8')
-        plt.annotate(percentage3, (0.1,1000), textcoords='offset points', xytext=(dates[0], confirmed[0]), size='8')
+        plt.annotate(percentage1, (0.1,900), textcoords='offset points', xytext=(0, 40), size='8')
+        plt.annotate(percentage2, (0.1,950), textcoords='offset points', xytext=(0, 50), size='8')
+        plt.annotate(percentage3, (0.1,1000), textcoords='offset points', xytext=(0, 60), size='8')
         plt.xticks(rotation=45, fontsize=6)
         return(plt)
 

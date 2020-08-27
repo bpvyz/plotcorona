@@ -1,10 +1,6 @@
-from flask import Flask, flash, redirect, render_template, \
-     request, url_for
+from flask import Flask, render_template, request
 from utils import get_countries
 from client import Corona
-import numpy as np
-import pandas as pd
-import wbdata as wb
 import datetime
 import os
 
@@ -26,9 +22,9 @@ def show_index():
     select = request.form.get('comp_select')
     corona = Corona()
     corona.generate_plot(select)
-    corona.plt.savefig(f'static/graphs/graph{datetime.datetime.now().timestamp()}.png', dpi=300)
-    full_filename = os.path.join(app.config['UPLOAD_FOLDER'], 'graph*.png')
-    return render_template("plot.html", user_image=full_filename)
+    filename = f'static/graphs/graph{datetime.datetime.now().timestamp()}.png'
+    corona.plt.savefig(filename, dpi=300)
+    return render_template("plot.html", user_image=filename)
 
 if __name__ == '__main__':
     app.run()
